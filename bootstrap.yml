@@ -1,0 +1,47 @@
+---
+
+- hosts: all
+  become: true
+  pre_tasks:
+
+  - name: install updates (CentOS)
+    tags: always
+    dnf:
+      update_only: yes
+      update_cache: yes
+    when: ansible_distribution == "CentOS"
+
+  - name: install updates (Ubuntu)
+    tags: always
+    apt:
+      upgrade: dist
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
+
+
+- hosts: all
+  become: true
+  tasks:
+
+
+   - name: create devops user
+     tags: always
+     user:
+       name: devops
+       groups: root
+
+   - name: add ssh key for devops
+     tags: always
+     authorized_key:
+       user: devops
+       key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCcQPYePhE92UyRHuthAOo8wDlOC0IesU9vAN+tTsiNAYZ0bodRmQH5ocM6/sENs6nNnhiFglvRgLON6UKqEvBuntv1QsPnh5bChV/Q6AB3u1kgPUPtNjLMZmdaT+sHyatg2gY6n+FO/nG/KSbu8u+e6kBxxXuyBFx6OrUICZHjMRzXqEkWNfE+G42isuYFsRVzb5DmWLgfK+Skyk8PVMSYajlhfl/b/zjH+4ACgtynOpjwEB3uYUQshQfhVpgiaLXjkSxf5b75R9VQrNJnjg92ud9s31kQeKwbxr0g8Slt4Zv/XdczTz5gqX93FyGYw/aRZGe7CU550WC9cutXpqnf"
+
+   - name: add sudoers file for devops
+     tags: always
+     copy: 
+       src: sudoer_devops
+       dest: /etc/sudoers.d/devops
+       owner: root
+       group: root
+       mode: 0440
+
