@@ -1,0 +1,4 @@
+- name: add ssh key for devops
+  authorized_key:
+    user: devops
+    key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCcQPYePhE92UyRHuthAOo8wDlOC0IesU9vAN+tTsiNAYZ0bodRmQH5ocM6/sENs6nNnhiFglvRgLON6UKqEvBuntv1QsPnh5bChV/Q6AB3u1kgPUPtNjLMZmdaT+sHyatg2gY6n+FO/nG/KSbu8u+e6kBxxXuyBFx6OrUICZHjMRzXqEkWNfE+G42isuYFsRVzb5DmWLgfK+Skyk8PVMSYajlhfl/b/zjH+4ACgtynOpjwEB3uYUQshQfhVpgiaLXjkSxf5b75R9VQrNJnjg92ud9s31kQeKwbxr0g8Slt4Zv/XdczTz5gqX93FyGYw/aRZGe7CU550WC9cutXpqnf"
